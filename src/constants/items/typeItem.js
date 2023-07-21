@@ -1,0 +1,7 @@
+export const TypeItem = {
+  CAR_COLLIDE: "CAR_COLLIDE",
+  DIAMOND: "DIAMOND",
+  WRENCH: "WRENCH",
+  BARRIER: "BARRIER",
+  GASOLINE: "GASOLINE",
+};
