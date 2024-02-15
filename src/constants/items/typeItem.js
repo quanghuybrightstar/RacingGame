@@ -4,4 +4,5 @@ export const TypeItem = {
   WRENCH: "WRENCH",
   BARRIER: "BARRIER",
   GASOLINE: "GASOLINE",
+  GIFT: "GIFT",
 };

@@ -7,17 +7,22 @@ const tweenAnims = (_this, _carPlayer, deltaX) => {
   _this.tweens.add({
     targets: _carPlayer,
     x: _carPlayer.x + deltaX,
-    duration: 150, // Duration of the animation in milliseconds
-    ease: "Back",
+    duration: 145, // Duration of the animation in milliseconds
+    // ease: "Linear",
     onComplete: () => {
       StorageValue.updateCanMove(true);
-      StorageValue.updatePositionCarPlayer({
-        x: _carPlayer.x,
-        y: _carPlayer.y,
-      });
+      // StorageValue.updatePositionCarPlayer({
+      //   x: _carPlayer.x,
+      //   y: _carPlayer.y,
+      // });
+      // StorageValue.listBenefitEffect[0]?.setPosition(
+      //   StorageValue.positionCarPlayer.x,
+      //   StorageValue.positionCarPlayer.y * 0.9
+      // );
     },
   });
 };
+
 const tweensLamp = (_this, _lamp, positionX, positionY, _scaleX, _scaleY) => {
   _this.tweens.add({
     targets: _lamp,

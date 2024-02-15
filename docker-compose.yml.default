@@ -1,0 +1,39 @@
+version: "3"
+services:
+  #Nginx Service
+  racer-game-nginx:
+    image: nginx:alpine
+    container_name: racer-game-nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "1569:80"
+      - "15943:443"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      # - ./certbot/www:/var/www/certbot/:ro
+      # - ./certbot/conf/:/etc/nginx/ssl/:ro
+    networks:
+      - app-network
+  #Node Service
+  racer-game-node:
+    image: node:16
+    container_name: racer-game-node
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - app-network
+#-------------------------------------------------------------------------------
+#Docker Networks
+networks:
+  app-network:
+    name: gk_game_net
+    # external: true
+    driver: bridge

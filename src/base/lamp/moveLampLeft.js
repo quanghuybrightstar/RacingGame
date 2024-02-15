@@ -1,41 +1,16 @@
 /* eslint-disable no-unused-vars */
+import { Constants } from "../../constants/Constants";
 import { tweensLamp } from "../animations/tweenAnims";
+import SmartBaseScreen from "../SmartBaseScreen";
 
-export const moveLampLeft = (
-  _this,
-  _lamp,
-  positionX,
-  positionY,
-  _scaleX,
-  _scaleY,
-  _graphicsRace
-) => {
-  setInterval(() => {
-    // _lamp.setPosition(
-    //   _graphicsRace.x * (6 - positionX),
-    //   _graphicsRace.y * (1 + positionY)
-    // );
-    tweensLamp(
-      _this,
-      _lamp,
-      _graphicsRace.x * (6.3 - positionX),
-      _graphicsRace.y * (1 + positionY),
-      _scaleX,
-      _scaleY
-    );
-    // _lamp.setDisplaySize(sizeWidth, sizeHeight);
-    if (positionY > -0.1) {
-      positionY += 1;
-      positionX += 6;
-    } else if (positionY > -0.5 && positionY <= -0.1) {
-      positionY += 0.45;
-      positionX += 3.52;
-    } else {
-      positionX += 2;
-      positionY += 0.6;
-    }
+SmartBaseScreen.baseSetUp();
+const widthScreen = SmartBaseScreen.smBaseWidth;
 
-    _scaleX += 0.22;
-    _scaleY += 0.25;
-  }, 600);
+export const moveLampLeft = (_this, _lamp, _positionY, _graphicsRace) => {
+  const positionX =
+    Constants.aLampLeft * _positionY * _positionY +
+    Constants.bLampLeft * _positionY +
+    Constants.cLampLeft;
+    
+  _lamp.setPosition(widthScreen * positionX, widthScreen * _positionY);
 };
